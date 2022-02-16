@@ -1,18 +1,22 @@
-const { Router } = require("express");
-const router = Router();
-const axios = require("axios");
+const express = require("express");
+const router = express.Router();
+const { Type } = require("../db.js");
+const { default: axios } = require("axios");
 
-router.get("/", async function (req, res, next) {
+router.get("/", async (req, res, next) => {
   try {
-    let tiposApi = await axios.get("https://pokeapi.co/api/v2/type");
-    tiposApi = tiposApi.data.results.filter(
-      (el) => el.name !== "unknown" && el.name !== "shadow"
-    );
-    tiposApi = tiposApi
-      .map((el) => el.name)
-      .sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1));
+    let allTypes = await axios.get("https://pokeapi.co/api/v2/type");
+    let todosTypes = allTypes.data.results;
 
-    return res.json(tiposApi);
+    todosTypes.forEach((item) => {
+      Type.findOrCreate({
+        where: {
+          name: item.name,
+        },
+      });
+    });
+    const typesDb = await Type.findAll();
+    res.send(typesDb);
   } catch (error) {
     next(error);
   }

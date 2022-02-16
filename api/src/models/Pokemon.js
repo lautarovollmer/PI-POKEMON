@@ -5,43 +5,57 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("pokemon", {
     id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
+      type: DataTypes.UUID, // UUID: GENERA UN NUMERO RANDOM CON LETRAS Y NUMEROS PARA QUE NO SE PISE CON EL ID DE LA API POKEMON.
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false, //SE SETEA EN FALSO PARA QUE NO SE PERMITA QUE ESTA VACIO, O SEA ES UN CAMPO OBLIGATORIO REQUERIDO.
+      primaryKey: true, //DA LA PROPIEDAD A ID DE QUE ES LA CLAVE PRIMARIA
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
     },
-    life: {
+    hp: {
+      //VIDA
       type: DataTypes.INTEGER,
       allowNull: true,
     },
     attack: {
+      //FUERZA/ATAQUE
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    defense: {
+      //DEFENSA
       type: DataTypes.INTEGER,
       allowNull: true,
     },
     speed: {
+      //VELOCIDAD
       type: DataTypes.INTEGER,
       allowNull: true,
     },
     height: {
-      type: DataTypes.INTEGER,
+      //ALTURA
+      type: DataTypes.FLOAT,
       allowNull: true,
     },
     weight: {
-      type: DataTypes.INTEGER,
+      //PESO
+      type: DataTypes.FLOAT,
       allowNull: true,
     },
     image: {
       type: DataTypes.STRING,
-      defaultValue:
-        "https://imagenpng.com/wp-content/uploads/2016/09/Pokebola-pokeball-png-0.png",
+      allowNull: true,
     },
     createInDb: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
   });
 };
