@@ -10,8 +10,6 @@ export default function Card({ name, img, type, attack }) {
         <p>{type}</p>
       </div>
       <div>
-        <h6>Attack</h6>
-        <p>{attack}</p>
         <div>
           <img src={img} alt="img not found" />
         </div>

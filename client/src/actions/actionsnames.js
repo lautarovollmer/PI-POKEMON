@@ -1,8 +1,0 @@
-export const GET_ALL_POKEMONS = "GET_ALL_POKEMONS";
-export const GET_NAME_POKEMONS = "GET_NAME_POKEMONS";
-export const FILTER_CREATED = "FILTER_CREATED";
-export const GET_TYPES = "GET_TYPES";
-export const FILTER_TYPES = "FILTER_TYPES";
-export const ORDEN_ALFABETICO = "ORDEN_ALFABETICO";
-export const ORDER_FUERZA = "ORDER_FUERZA";
-export const GET_DETAILS = "GET_DETAILS";
