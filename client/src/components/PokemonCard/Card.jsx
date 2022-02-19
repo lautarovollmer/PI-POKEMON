@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../PokemonCard/Card.module.css";
 
-export default function Card({ name, img, type, attack }) {
+export default function Card({ name, img, type }) {
   return (
     <div>
       <h1>{name}</h1>

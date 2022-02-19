@@ -1,23 +1,21 @@
 import {
-  GET_POKEMONS,
-  GET_POKEMON_ID,
-  GET_POKEMON_NAME,
+  GET_ALL_POKEMONS,
+  GET_NAME_POKEMONS,
+  FILTER_CREATED,
+  FILTER_TYPES,
   GET_TYPES,
-  FILTER_ORIGIN_POKEMON,
-  FILTER_TYPE_POKEMON,
-  SORT_POKEMONS,
-  ADD_POKEMON,
-  CLEAR_POKEMON_SEARCH,
-  CLEAR_POKEMON_SPECS,
-} from "./types";
+  ORDEN_ALFABETICO,
+  ORDER_FUERZA,
+  GET_DETAILS,
+} from "../reducer/types";
 
 import axios from "axios";
 
-export function getPokemons() {
+export function getPokemon() {
   return async function (dispatch) {
     var json = await axios.get("http://localhost:3001/pokemons");
     return dispatch({
-      type: GET_POKEMONS,
+      type: GET_ALL_POKEMONS,
       payload: json.data,
     });
   };
@@ -28,12 +26,26 @@ export function getNamePokemons(name) {
     try {
       var json = await axios.get(`http://localhost:3001/pokemons?name=${name}`);
       return dispatch({
-        type: GET_POKEMON_NAME,
+        type: GET_NAME_POKEMONS,
         payload: json.data,
       });
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+export function filterCreated(payload) {
+  return {
+    type: FILTER_CREATED,
+    payload,
+  };
+}
+
+export function ordenAlfabetico(payload) {
+  return {
+    type: ORDEN_ALFABETICO,
+    payload,
   };
 }
 
@@ -44,46 +56,37 @@ export function getTypes() {
   };
 }
 
-export function getPokemonById(id) {
-  return async (dispatch) => {
-    const res = await axios.get(`http://localhost:3001/${id}`);
-    dispatch({ type: GET_POKEMON_ID, payload: res.data });
-  };
-}
-
-export function filterPokemonsByOrigin(type) {
+export function filterTypes(payload) {
   return {
-    type: FILTER_ORIGIN_POKEMON,
-    payload: type,
+    type: FILTER_TYPES,
+    payload,
   };
 }
 
-export function filterPokemonsByType(type) {
+export function postPokemon(pokemon) {
+  return async function (dispatch) {
+    const res = await axios.post(" http://localhost:3001/pokemons", pokemon);
+    return res;
+  };
+}
+
+export function getDetails(id) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(`http://localhost:3001/pokemons/${id}`);
+      return dispatch({
+        type: GET_DETAILS,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function ordenFuerza(payload) {
   return {
-    type: FILTER_TYPE_POKEMON,
-    payload: type,
+    type: ORDER_FUERZA,
+    payload,
   };
-}
-
-export function sortPokemons(type) {
-  return {
-    type: SORT_POKEMONS,
-    payload: type,
-  };
-}
-
-export function addPokemon(specs) {
-  return (dispatch) => {
-    axios.post("http://localhost:3001/pokemons", specs).then((r) => {
-      dispatch({ type: ADD_POKEMON, payload: r.data });
-    });
-  };
-}
-
-export function clearPokemonSpecs() {
-  return { type: CLEAR_POKEMON_SPECS };
-}
-
-export function clearPokemonSearch() {
-  return { type: CLEAR_POKEMON_SEARCH };
 }
