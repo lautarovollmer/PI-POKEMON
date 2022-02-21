@@ -16,8 +16,8 @@ import {
 function filterby(arr, actionPayload) {
   let pokemonsF = [];
   for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr[i].types.length; j++) {
-      if (arr[i].types[j].name === actionPayload) {
+    for (let j = 0; j < arr[i].Type.length; j++) {
+      if (arr[i].Type[j].name === actionPayload) {
         pokemonsF.push(arr[i]);
       }
     }

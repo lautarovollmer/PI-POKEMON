@@ -3,8 +3,8 @@ import "../Cards/cards.css";
 
 export default function Cards({ allPokemons }) {
   return (
-    <div className="page">
-      <ul className="list">
+    <div>
+      <ul>
         {allPokemons &&
           allPokemons.map((p) => (
             <li key={p.id}>

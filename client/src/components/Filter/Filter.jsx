@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sortPokemons, filterCreated, filterTypes } from "../../reducer/action";
-import "../Filter/filter.css";
 
 export default function Filter() {
   const [order, setOrder] = useState("");
@@ -35,9 +34,8 @@ export default function Filter() {
 
   return (
     <>
-      <div className="filter">
-        <div className="sort" />
-        <label htmlFor="order">Order by: </label>
+      <div>
+        <label htmlFor="order">Order by:</label>
         <select name="order" onChange={handleChangeOrder}>
           <option value="none">None</option>
           <option value="high-low">More strong</option>
@@ -45,8 +43,9 @@ export default function Filter() {
           <option value="A-Z">A-Z</option>
           <option value="Z-A">Z-A</option>
         </select>
-
-        <label htmlFor="filter">Filter by origin</label>
+      </div>
+      <div>
+        <label htmlFor="filter">Filter by origin: </label>
         <select name="filter" onChange={handleChangeFilter}>
           <option value="all">All</option>
           {myPokemons.length ? (
@@ -54,22 +53,24 @@ export default function Filter() {
           ) : null}
           <option value="exists">Pokemons Api</option>
         </select>
-
-        <label htmlFor="types">Filter by type: </label>
-        <select
-          name="Types"
-          onChange={(e) => {
-            handleChangeTypes(e);
-          }}
-        >
-          <option value="all">All types</option>
-          {types &&
-            types.map((t) => (
-              <option key={t.name} value={t.name}>
-                {t.name}
-              </option>
-            ))}
-        </select>
+        <div>
+          <label htmlFor="types">Filter by type: </label>
+          <select
+            name="Types"
+            onChange={(e) => {
+              handleChangeTypes(e);
+            }}
+          >
+            <option value="all">All types</option>
+            {types &&
+              types.map((t) => (
+                <option
+                  key={`${t.name}`}
+                  value={`${t.name}`}
+                >{`${t.name}`}</option>
+              ))}
+          </select>
+        </div>
       </div>
     </>
   );
