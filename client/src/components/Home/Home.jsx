@@ -33,31 +33,29 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    <>
-      <div>
-        <h1>POKÉDEX</h1>
-        <Search />
-        <Filter />
-        <Paginado
-          pokmnPerPage={pokmnPerPage}
-          totalPokmn={pokemonsShowed.length}
-          paginate={paginate}
-        />
-        {pokemonsShowed.length ? (
-          <Cards className="card" allPokemons={currentPokmn} />
-        ) : (
-          <div>
-            <img
-              src="https://www.animatedimages.org/data/media/1446/animated-pokemon-image-0005.gif"
-              alt="loadin-pokemons"
-              height="70"
-              width="70px"
-            />
-            <br />
-            <span>Loading...</span>
-          </div>
-        )}
-      </div>
-    </>
+    <div>
+      <h1>POKÉDEX</h1>
+      <Search />
+      <Filter />
+      <Paginado
+        pokmnPerPage={pokmnPerPage}
+        totalPokmn={pokemonsShowed.length}
+        paginate={paginate}
+      />
+      {pokemonsShowed.length ? (
+        <Cards className="card" allPokemons={currentPokmn} />
+      ) : (
+        <div>
+          <img
+            src="https://www.animatedimages.org/data/media/1446/animated-pokemon-image-0005.gif"
+            alt="loadin-pokemons"
+            height="70"
+            width="70px"
+          />
+          <br />
+          <span>Loading...</span>
+        </div>
+      )}
+    </div>
   );
 }

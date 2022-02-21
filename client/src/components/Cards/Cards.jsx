@@ -8,7 +8,12 @@ export default function Cards({ allPokemons }) {
         {allPokemons &&
           allPokemons.map((p) => (
             <li key={p.id}>
-              <Card name={p.name} img={p.img} id={p.id} type={p.type} />
+              <Card
+                name={p.name}
+                img={p.image}
+                id={p.id}
+                type={p.Type[0].name}
+              />
             </li>
           ))}
       </ul>

@@ -1,30 +1,33 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getPokemon } from "../../reducer/action";
+import { getNamePokemons } from "../../reducer/action";
+import "../SearchBar/search.css";
 
 export default function Search() {
-  const [state, setState] = useState("");
-  const dispatch = useDispatch();
-  const inputHandler = (event) => {
-    setState(event.target.value);
+  const [input, setInput] = useState("");
+
+  const handleChange = (e) => {
+    setInput(e.target.value);
   };
 
+  const dispatch = useDispatch();
+
   const onClickHandler = () => {
-    dispatch(getPokemon(state));
+    dispatch(getNamePokemons(input));
   };
 
   return (
     <div>
       <div>
         <input
+          placeholder="Search your Pokemon..."
+          type="text"
+          name="input"
           required
           autoComplete="off"
-          type="text"
-          placeholder="Search by name"
-          name="input"
-          onChange={(e) => inputHandler(e)}
+          onChange={(e) => handleChange(e)}
         />
-        <button onClick={onClickHandler}>Buscar</button>
+        <button onClick={onClickHandler}>Search</button>
       </div>
     </div>
   );

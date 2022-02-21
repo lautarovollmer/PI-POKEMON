@@ -30,7 +30,7 @@ const initialData = {
   pokemonsShowed: [], //todos los que muestro
   pokemonsFiltered: [], //by api or users
   myPokemons: [], //db
-  pokemonSpecs: {},
+  pokemon: {},
   pokemonSearch: {},
   types: [],
 };
@@ -58,7 +58,7 @@ export default function rootReducer(state = initialData, action) {
       return { ...state, pokemonSearch: action.payload };
 
     case GET_POKEMON_ID:
-      return { ...state, pokemonSpecs: action.payload };
+      return { ...state, pokemon: action.payload };
 
     case FILTER_CREATED:
       if (action.payload === "created") {

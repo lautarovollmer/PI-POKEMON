@@ -7,7 +7,6 @@ export default function Card({ name, img, id, type }) {
     <div>
       <div>
         <div>
-          {img}
           <img src={img} alt="not found" />
         </div>
       </div>
@@ -15,9 +14,8 @@ export default function Card({ name, img, id, type }) {
       <div>
         <h6>Tipo</h6>
         <p>{type}</p>
-        {type && type.map((t) => <span key={t.name}>{t.name}</span>)}
       </div>
-      <Link to={`/home/pokemons/${id}`}>
+      <Link to={`/pokemons/${id}`}>
         <button>More</button>
       </Link>
     </div>
