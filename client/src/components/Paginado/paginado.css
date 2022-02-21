@@ -1,0 +1,24 @@
+.page-item {
+  display: inline-block;
+}
+
+.page-item a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: background-color 0.3s;
+  border: 1px solid #72e9ad;
+  margin: 0 4px;
+  font-size: 18px;
+  width: 40px;
+}
+.page-item a.active {
+  color: #72e9ad;
+  border-radius: 5px;
+}
+.page-item a:hover:not(.active) {
+  background-color: #72e9ad;
+}

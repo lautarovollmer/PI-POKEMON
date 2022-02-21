@@ -1,0 +1,13 @@
+.page {
+  text-align: center;
+}
+.list {
+  width: 90%;
+  margin: 20px auto;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

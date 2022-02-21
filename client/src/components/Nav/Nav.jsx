@@ -1,5 +1,3 @@
-import React from "react";
-
-export default function Nav() {
-  return <nav></nav>;
-}
+import React, { useState } from "react";
+import { getNamePokemons } from "../../reducer/action";
+import { useDispatch, useSelector } from "react-redux";
