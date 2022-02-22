@@ -3,36 +3,32 @@ import { useDispatch } from "react-redux";
 import { getNamePokemons } from "../../reducer/action";
 import "../SearchBar/search.css";
 
-export default function Search(setFilter) {
-  const [input, setInput] = useState({ name: "" });
+export default function Search() {
+  const [state, setState] = useState("");
   const dispatch = useDispatch();
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(getNamePokemons(e.target.busqueda.value));
-    setFilter(false);
-  }
+  const inputHandler = (event) => {
+    setState(event.target.value);
+  };
 
-  function handleChange(e) {
-    setInput({ ...input, name: e.target.value });
-  }
+  const onClickHandler = () => {
+    dispatch(getNamePokemons(state));
+  };
 
   return (
     <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          type="text"
-          name="busqueda"
-          onChange={(e) => handleChange(e)}
-          className="input"
-        />
-        <input
-          className="btn"
-          type="submit"
-          value="Buscar"
-          disabled={input.name !== "" ? false : true}
-        />
-      </form>
+      <input
+        className="input"
+        required
+        autoComplete="off"
+        type="text"
+        placeholder="Pokemon..."
+        name="input"
+        onChange={(e) => inputHandler(e)}
+      />
+      <button className="btn" onClick={(e) => onClickHandler(e)}>
+        Search
+      </button>
     </div>
   );
 }

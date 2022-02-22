@@ -1,5 +1,6 @@
 .page-item {
   display: inline-block;
+  margin-top: 10px;
 }
 
 .page-item a {

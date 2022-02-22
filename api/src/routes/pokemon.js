@@ -30,7 +30,7 @@ router.get("/", async (req, res, next) => {
           image:
             nameApi.data.sprites.versions["generation-v"]["black-white"]
               .animated.front_default,
-          types: nameApi.data.types.map((t) => {
+          Type: nameApi.data.types.map((t) => {
             return { name: t.type.name };
           }),
         });

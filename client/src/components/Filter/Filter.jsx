@@ -35,8 +35,10 @@ export default function Filter() {
 
   return (
     <div className="filter">
-      <label htmlFor="order">Order by:</label>
-      <select name="order" onChange={handleChangeOrder}>
+      <label className="order" htmlFor="order">
+        Order by:
+      </label>
+      <select className="select" name="order" onChange={handleChangeOrder}>
         <option value="none">None</option>
         <option value="high-low">More strong</option>
         <option value="low-high">More weak</option>
@@ -44,8 +46,10 @@ export default function Filter() {
         <option value="Z-A">Z-A</option>
       </select>
 
-      <label htmlFor="filter">Filter by origin: </label>
-      <select name="filter" onChange={handleChangeFilter}>
+      <label className="order" htmlFor="filter">
+        Filter by origin:{" "}
+      </label>
+      <select className="select" name="filter" onChange={handleChangeFilter}>
         <option value="all">All</option>
         {myPokemons.length ? (
           <option value="created">Created by users</option>
@@ -53,8 +57,11 @@ export default function Filter() {
         <option value="exists">Pokemons Api</option>
       </select>
 
-      <label htmlFor="types">Filter by type: </label>
+      <label className="order" htmlFor="types">
+        Filter by type:{" "}
+      </label>
       <select
+        className="select"
         name="Types"
         onChange={(e) => {
           handleChangeTypes(e);

@@ -1,14 +1,14 @@
-// import React from "react";
-// import { Link } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
-// export default function Nav() {
-//   return (
-//     <>
-//       <div>
-//         <Link to="/create">
-//           <h3>Crear Pokemon</h3>
-//         </Link>
-//       </div>
-//     </>
-//   );
-// }
+export default function Nav() {
+  return (
+    <>
+      <div>
+        <Link to="/create">
+          <h3>Crear Pokemon</h3>
+        </Link>
+      </div>
+    </>
+  );
+}

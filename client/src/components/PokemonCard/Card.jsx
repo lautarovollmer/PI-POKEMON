@@ -15,7 +15,9 @@ export default function Card({ name, img, id, type }) {
       </Link>
       <div>
         <h4 className="typeContainer">Tipo</h4>
-        <span className="type">{type}</span>
+        <span className="type">
+          {type !== undefined && type.map((t) => t.name)}
+        </span>
       </div>
     </div>
   );

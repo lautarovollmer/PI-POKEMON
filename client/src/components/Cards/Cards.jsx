@@ -6,7 +6,13 @@ export default function Cards({ allPokemons }) {
     <div className="cardContainer">
       {allPokemons &&
         allPokemons.map((p) => (
-          <Card name={p.name} img={p.image} id={p.id} type={p.Type[0].name} />
+          <Card
+            name={p.name}
+            img={p.image}
+            id={p.id}
+            key={p.id}
+            type={p.Type}
+          />
         ))}
     </div>
   );

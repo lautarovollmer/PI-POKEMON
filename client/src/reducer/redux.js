@@ -30,7 +30,7 @@ const initialData = {
   pokemonsShowed: [], //todos los que muestro
   pokemonsFiltered: [], //by api or users
   myPokemons: [], //db
-  pokemon: {},
+  pokemon: [],
   pokemonSearch: {},
   types: [],
 };
@@ -55,7 +55,7 @@ export default function rootReducer(state = initialData, action) {
       };
 
     case GET_NAME_POKEMONS:
-      return { ...state, pokemonSearch: action.payload };
+      return { ...state, pokemonsShowed: action.payload };
 
     case GET_POKEMON_ID:
       return { ...state, pokemon: action.payload };
@@ -133,7 +133,7 @@ export default function rootReducer(state = initialData, action) {
       }
 
     case CLEAR_POKEMON_SPECS:
-      return { ...state, pokemonSpecs: {} };
+      return { ...state, pokemon: {} };
 
     case CLEAR_POKEMON_SEARCH:
       return { ...state, pokemonSearch: {} };

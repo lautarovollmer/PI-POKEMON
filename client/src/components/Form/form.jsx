@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addPokemon, getTypes } from "../../reducer/action";
 
-const validate = (input) => {
+export function validate(input) {
   let errors = {};
-
   for (let key in input) {
     if (key !== "name" && key !== "img") {
       if (!input[key]) {
@@ -27,7 +26,7 @@ const validate = (input) => {
     }
   }
   return errors;
-};
+}
 
 export default function CreatePokemon() {
   const [error, setError] = useState({});
@@ -53,7 +52,9 @@ export default function CreatePokemon() {
   function handleChecked(e) {
     if (e.target.checked) {
       setTypes([...types, e.target.value]);
+      //console.log(types)
     } else {
+      //console.log('ready');
       let pos = types.indexOf(e.target.id);
       types.splice(pos, 1);
     }
@@ -78,7 +79,7 @@ export default function CreatePokemon() {
     let error = validate(inputs);
     if (!Object.keys(error).length && types.length) {
       alert("Pokemon created!");
-      dispatch(addPokemon({ ...inputs, types: types.map((n) => n) }));
+      dispatch(addPokemon(inputs));
       setInputs({
         name: "",
         hp: "",
@@ -97,115 +98,125 @@ export default function CreatePokemon() {
   }
 
   return (
-    <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <label>Name: </label>
-          <input
-            name="name"
-            type="text"
-            value={inputs.name}
-            placeholder="name"
-            onChange={handleInputChange}
-          />
-          {error.name && <span>{error.name}</span>}
-        </div>
-        <div>
-          <label>Health: </label>
-          <input
-            name="hp"
-            type="text"
-            value={inputs.hp}
-            placeholder="hp"
-            onChange={handleInputChange}
-          />
-          {error.hp && <span>{error.hp}</span>}
-        </div>
-        <div>
-          <label>Attack: </label>
-          <input
-            name="attack"
-            type="text"
-            value={inputs.attack}
-            placeholder="attack"
-            onChange={handleInputChange}
-          />
-          {error.attack && <span>{error.attack}</span>}
-        </div>
-        <div>
-          <label>Defense: </label>
-          <input
-            name="defense"
-            type="text"
-            value={inputs.defense}
-            placeholder="defense"
-            onChange={handleInputChange}
-          />
-          {error.defense && <span>{error.defense}</span>}
-        </div>
-        <div>
-          <label>Speed: </label>
-          <input
-            name="speed"
-            type="text"
-            value={inputs.speed}
-            placeholder="speed"
-            onChange={handleInputChange}
-          />
-          {error.speed && <span>{error.speed}</span>}
-        </div>
-        <div>
-          <label>Height: </label>
-          <input
-            name="height"
-            type="text"
-            value={inputs.height}
-            placeholder="height"
-            onChange={handleInputChange}
-          />
-          {error.height && <span>{error.height}</span>}
-        </div>
-        <div>
-          <label>Weight: </label>
-          <input
-            name="weight"
-            type="text"
-            value={inputs.weight}
-            placeholder="weight"
-            onChange={handleInputChange}
-          />
-          {error.weight && <span>{error.weight}</span>}
-        </div>
-        <div>
-          <label>Image Link: </label>
-          <input
-            name="img"
-            type="text"
-            value={inputs.img}
-            placeholder="img link..."
-            onChange={handleInputChange}
-          />
-          {error.img && <span>{error.img}</span>}
-        </div>
-        <h3>Choose one or more:</h3>
-        <div>
-          {typesDB &&
-            typesDB.map((t) => (
-              <div key={`${t.id}`}>
-                <input
-                  key={`${t.id}`}
-                  type="checkbox"
-                  name={`tipos`}
-                  value={`${t.name}`}
-                  id={`${t.id}`}
-                  onChange={handleChecked}
-                />
-                <label htmlFor={`${t.name}`}>{`${t.name}`}</label>
-              </div>
-            ))}
-        </div>
-        <input type="submit" value="Crear" />
-      </form>
+    <div className="home">
+      <div className="form">
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className="stat">
+            <label>Name: </label>
+            <input
+              name="name"
+              type="text"
+              value={inputs.name}
+              placeholder="name"
+              onChange={handleInputChange}
+            />
+            {error.name && <span>{error.name}</span>}
+          </div>
+
+          <div className="stat">
+            <label>Health: </label>
+            <input
+              name="hp"
+              type="text"
+              value={inputs.hp}
+              placeholder="hp"
+              onChange={handleInputChange}
+            />
+            {error.hp && <span>{error.hp}</span>}
+          </div>
+
+          <div className="stat">
+            <label>Attack: </label>
+            <input
+              name="attack"
+              type="text"
+              value={inputs.attack}
+              placeholder="attack"
+              onChange={handleInputChange}
+            />
+            {error.attack && <span>{error.attack}</span>}
+          </div>
+
+          <div className="stat">
+            <label>Defense: </label>
+            <input
+              name="defense"
+              type="text"
+              value={inputs.defense}
+              placeholder="defense"
+              onChange={handleInputChange}
+            />
+            {error.defense && <span>{error.defense}</span>}
+          </div>
+
+          <div className="stat">
+            <label>Speed: </label>
+            <input
+              name="speed"
+              type="text"
+              value={inputs.speed}
+              placeholder="speed"
+              onChange={handleInputChange}
+            />
+            {error.speed && <span>{error.speed}</span>}
+          </div>
+
+          <div className="stat">
+            <label>Height: </label>
+            <input
+              name="height"
+              type="text"
+              value={inputs.height}
+              placeholder="height"
+              onChange={handleInputChange}
+            />
+            {error.height && <span>{error.height}</span>}
+          </div>
+
+          <div className="stat">
+            <label>Weight: </label>
+            <input
+              name="weight"
+              type="text"
+              value={inputs.weight}
+              placeholder="weight"
+              onChange={handleInputChange}
+            />
+            {error.weight && <span>{error.weight}</span>}
+          </div>
+
+          <div className="stat">
+            <label>Image Link: </label>
+            <input
+              name="img"
+              type="text"
+              value={inputs.img}
+              placeholder="img link..."
+              onChange={handleInputChange}
+            />
+            {error.img && <span>{error.img}</span>}
+          </div>
+
+          <h3>Choose one or more:</h3>
+          <div className="input-types">
+            {typesDB &&
+              typesDB.map((t) => (
+                <div key={`${t.id}`} className="type">
+                  <input
+                    key={`${t.id}`}
+                    type="checkbox"
+                    name={`tipos`}
+                    value={`${t.name}`}
+                    id={`${t.id}`}
+                    onChange={handleChecked}
+                  />
+                  <label htmlFor={`${t.name}`}>{`${t.name}`}</label>
+                </div>
+              ))}
+          </div>
+          <input className="create-btn" type="submit" value="Crear" />
+        </form>
+      </div>
     </div>
   );
 }
