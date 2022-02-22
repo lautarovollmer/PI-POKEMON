@@ -1,13 +1,8 @@
-.page {
-  text-align: center;
-}
-.list {
-  width: 90%;
-  margin: 20px auto;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-left: 5%;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
