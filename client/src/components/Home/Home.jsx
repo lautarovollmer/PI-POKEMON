@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPokemon, getTypes } from "../../reducer/action";
 import Cards from "../Cards/Cards";
 import Filter from "../Filter/Filter";
-
 import Paginado from "../Paginado/Paginado";
 import Search from "../SearchBar/SearchBar";
 import "../Home/home.css";
+import Nav from "../Nav/Nav";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -32,10 +32,12 @@ export default function Home() {
     dispatch(getTypes());
   }, [dispatch]);
   console.log(currentPokmn);
+
   return (
-    <div>
+    <div className="home">
       <h1>POKÉDEX</h1>
 
+      <Nav />
       <Search />
       <Filter />
       <Paginado
@@ -44,7 +46,7 @@ export default function Home() {
         paginate={paginate}
       />
       {pokemonsShowed.length ? (
-        <Cards className="card" allPokemons={pokemonsShowed} />
+        <Cards className="card" allPokemons={currentPokmn} />
       ) : (
         <div>
           <img

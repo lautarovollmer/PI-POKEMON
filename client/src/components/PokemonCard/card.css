@@ -10,6 +10,13 @@
   border-radius: 10px;
 }
 
+.card:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  background-image: linear-gradient(to right, #00ff628a, #c6f0c8c4);
+  box-shadow: 1px 1px 15px #63c9ac;
+}
+
 .imagen {
   width: 100px;
   height: 100px;
@@ -41,7 +48,10 @@
 }
 
 .type {
-  margin: 10px;
-  padding: 4px 10px 4px 10px;
-  color: #544179;
+  flex-wrap: wrap;
+  text-transform: capitalize;
+  border: black;
+  border-radius: 2px;
+  margin: auto 10px;
+  word-spacing: 0.25rem;
 }

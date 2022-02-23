@@ -49,7 +49,13 @@ export default function Filter() {
       <label className="order" htmlFor="filter">
         Filter by origin:{" "}
       </label>
-      <select className="select" name="filter" onChange={handleChangeFilter}>
+      <select
+        className="select"
+        name="filter"
+        onChange={(e) => {
+          handleChangeFilter(e);
+        }}
+      >
         <option value="all">All</option>
         {myPokemons.length ? (
           <option value="created">Created by users</option>
