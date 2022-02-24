@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../Nav/nav.css";
 
 export default function Nav() {
   return (
     <>
-      <div>
-        <Link to="/create">
+      <div className="nav">
+        <Link className="crear" to="/create">
           <h3>Crear Pokemon</h3>
         </Link>
       </div>

@@ -1,0 +1,23 @@
+.crear {
+  text-decoration: none;
+  font-weight: lighter;
+  padding: 1px 35px 8px 35px;
+  background-image: linear-gradient(to right, #9beebb, #17d7a0);
+  border-radius: 30px;
+  color: black;
+}
+
+.crear:hover {
+  background-image: linear-gradient(to right, #d1e4d8, #17d7a0);
+  box-shadow: 1px 1px 15px #63c9ac;
+}
+
+.nav {
+  color: #000;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0rem 1rem;
+  height: 100%;
+  cursor: pointer;
+}

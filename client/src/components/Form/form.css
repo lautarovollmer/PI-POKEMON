@@ -1,0 +1,77 @@
+.form {
+  border: 1px solid #434141;
+  border-radius: 10px;
+  width: 60%;
+  margin: auto;
+  background-color: #4a6163e0;
+}
+
+.form h3 {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.stats {
+  padding: 10px;
+  border-bottom: 1px solid #f9faf4;
+  text-align: center;
+}
+
+.stats > label {
+  font-size: medium;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+.stats > input {
+  padding: 7px;
+  width: 30%;
+  margin-left: 35%;
+  background-color: #eee;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.input-types {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.type-f {
+  border: 1px solid #f9faf4;
+  margin: 5px;
+  padding: 8px;
+  text-transform: capitalize;
+}
+
+.btn-f {
+  margin-right: auto;
+  margin-left: auto;
+  width: max-content;
+  font-size: 18px;
+  font-weight: lighter;
+  padding: 8px 35px 8px 35px;
+  background-image: linear-gradient(to right, #9beebb, #17d7a0);
+  border-radius: 30px;
+  border: none;
+}
+
+.btn-f:hover {
+  background-image: linear-gradient(to right, #d1e4d8, #17d7a0);
+  box-shadow: 1px 1px 15px #63c9ac;
+}
+
+.link-f {
+  margin-top: 40px;
+  text-decoration: none;
+  font-weight: lighter;
+  padding: 1px 35px 8px 35px;
+  background-image: linear-gradient(to right, #9beebb, #17d7a0);
+  border-radius: 30px;
+  color: black;
+  margin-right: 80%;
+}
+
+.link-f:hover {
+  background-image: linear-gradient(to right, #d1e4d8, #17d7a0);
+  box-shadow: 1px 1px 15px #63c9ac;
+}

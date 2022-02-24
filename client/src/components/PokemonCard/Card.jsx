@@ -7,7 +7,15 @@ export default function Card({ name, img, id, type }) {
     <div className="card" onClick={() => console.log(img)}>
       <div>
         <div>
-          <img className="imagen" src={img} alt="not found" />
+          <img
+            className="imagen"
+            src={
+              img
+                ? img
+                : "https://www.animatedimages.org/data/media/1446/animated-pokemon-image-0095.gif"
+            }
+            alt="not found"
+          />
         </div>
       </div>
       <Link to={`/pokemons/${id}`} className="link">

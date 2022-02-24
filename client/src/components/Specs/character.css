@@ -53,6 +53,11 @@
   color: black;
 }
 
+.link-s:hover {
+  background-image: linear-gradient(to right, #d1e4d8, #17d7a0);
+  box-shadow: 1px 1px 15px #63c9ac;
+}
+
 .types {
   flex-wrap: wrap;
   text-transform: capitalize;

@@ -1,13 +1,17 @@
-.home {
-  padding-top: 10px;
-  padding-bottom: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
-  min-height: 100vh;
+.conteinerL {
+  background-image: url("https://wallpapercave.com/wp/wp10311735.jpg");
+  background-position: bottom;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.restart {
-  margin-top: 20px;
+.btnL {
+  margin-right: auto;
+  margin-left: auto;
   width: max-content;
   font-size: 18px;
   font-weight: lighter;
@@ -17,7 +21,7 @@
   border: none;
 }
 
-.restart:hover {
+.btnL:hover {
   background-image: linear-gradient(to right, #d1e4d8, #17d7a0);
   box-shadow: 1px 1px 15px #63c9ac;
 }

@@ -23,3 +23,8 @@
   border-radius: 0px 30px 30px 0px;
   box-shadow: 1px 1px 10px #17d7a0;
 }
+
+.btn:hover {
+  background-image: linear-gradient(to right, #d1e4d8, #c1e6db);
+  box-shadow: 1px 1px 15px #63c9ac;
+}

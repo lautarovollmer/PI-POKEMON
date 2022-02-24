@@ -33,6 +33,11 @@ export default function Home() {
   }, [dispatch]);
   console.log(currentPokmn);
 
+  const handleRefresh = () => {
+    dispatch(getPokemon());
+    setCurrentPage(1);
+  };
+
   return (
     <div className="home">
       <h1>POKÉDEX</h1>
@@ -45,6 +50,12 @@ export default function Home() {
         totalPokmn={pokemonsShowed.length}
         paginate={paginate}
       />
+      <div>
+        <button className="restart" onClick={() => handleRefresh()}>
+          Restart
+        </button>
+      </div>
+
       {pokemonsShowed.length ? (
         <Cards className="card" allPokemons={currentPokmn} />
       ) : (

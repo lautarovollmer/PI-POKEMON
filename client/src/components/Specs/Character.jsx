@@ -15,27 +15,34 @@ export default function Character() {
   useEffect(() => {
     dispatch(getPokemonById(id));
   }, []);
-  console.log(pokemon, " POKEMONS");
+  console.log(pokemon);
   return (
-    <>
+    <div>
       <div className="style">
         {pokemon.hasOwnProperty("name") ? (
           <>
             <div>
               <Link className="link-s" to="/home">
-                <span>Home</span>
+                Home
               </Link>
             </div>
             <div>
               <img
                 className="style-img"
-                src={pokemon.image}
+                src={
+                  pokemon.image
+                    ? pokemon.image
+                    : "https://www.animatedimages.org/data/media/1446/animated-pokemon-image-0095.gif"
+                }
                 alt="img pokemon"
               />
               <h1>{pokemon.name}</h1>
             </div>
             <div className="stats">
               <h3>Stats</h3>
+
+              <span className="span">Id:</span>
+              <span>{pokemon.id}</span>
 
               <span className="span">Vida:</span>
               <span>{pokemon.hp}</span>
@@ -53,10 +60,10 @@ export default function Character() {
               <h3>Dimensiones</h3>
 
               <span className="span-dim">Altura:</span>
-              <span>{pokemon.height}m</span>
+              <span>{pokemon.height}</span>
 
               <span className="span-dim">Peso:</span>
-              <span>{pokemon.weight}kg</span>
+              <span>{pokemon.weight}</span>
 
               <div>
                 <h3>Tipos</h3>
@@ -76,6 +83,6 @@ export default function Character() {
           "Loading..."
         )}
       </div>
-    </>
+    </div>
   );
 }
