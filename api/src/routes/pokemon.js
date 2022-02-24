@@ -88,26 +88,45 @@ router.get("/", async (req, res, next) => {
           },
         },
       });
+      console.log(include);
 
       // NORMALIZAR TODOS LOS POKEMONS PARA QUE SOLO TRAIGA LOS DATA QUE QUIERO DE CADA POKEMON DE BASE DE DATOS
       let normalize = [];
+
       for (var i = 0; i < include.length; i++) {
-        normalize.push({
-          id: include[i].dataValues.id,
-          name: include[i].dataValues.name.toUpperCase(),
-          hp: include[i].dataValues.hp,
-          attack: include[i].dataValues.attack,
-          defense: include[i].dataValues.defense,
-          speed: include[i].dataValues.speed,
-          height: include[i].dataValues.height,
-          weight: include[i].dataValues.weight,
-          image: include[i].dataValues.image,
-          Type: include[i].dataValues.types.map((n) => {
-            return { name: n.name };
-          }),
-          description: include[i].dataValues.description,
-          createInDb: include[i].dataValues.createInDb,
-        });
+        if (include[i].dataValues.createInDb) {
+          normalize.push({
+            id: include[i].dataValues.id,
+            name: include[i].dataValues.name.toUpperCase(),
+            hp: include[i].dataValues.hp,
+            attack: include[i].dataValues.attack,
+            defense: include[i].dataValues.defense,
+            speed: include[i].dataValues.speed,
+            height: include[i].dataValues.height,
+            weight: include[i].dataValues.weight,
+            image: include[i].dataValues.image,
+            Type: include[i].dataValues.Types,
+            description: include[i].dataValues.description,
+            createInDb: include[i].dataValues.createInDb,
+          });
+        } else {
+          normalize.push({
+            id: include[i].dataValues.id,
+            name: include[i].dataValues.name.toUpperCase(),
+            hp: include[i].dataValues.hp,
+            attack: include[i].dataValues.attack,
+            defense: include[i].dataValues.defense,
+            speed: include[i].dataValues.speed,
+            height: include[i].dataValues.height,
+            weight: include[i].dataValues.weight,
+            image: include[i].dataValues.image,
+            Type: include[i].dataValues.types.map((n) => {
+              return { name: n.name };
+            }),
+            description: include[i].dataValues.description,
+            createInDb: include[i].dataValues.createInDb,
+          });
+        }
       }
 
       // OBTENER TODOS LOS POKEMONS DE LA API
@@ -185,7 +204,7 @@ router.get("/:id", async (req, res, next) => {
       res.send(normalizedApiId);
     } catch {}
 
-    // OBTENER POMEMON DE BASE DE DATOS POR PARAMS {ID}
+    // OBTENER POKEMON DE BASE DE DATOS POR PARAMS {ID}
   } else {
     try {
       let idParams = await Pokemon.findOne({
@@ -208,9 +227,8 @@ router.get("/:id", async (req, res, next) => {
         speed: idParams?.dataValues.speed,
         height: idParams?.dataValues.height,
         weight: idParams?.dataValues.weight,
-        image:
-          "https://www.pinclipart.com/picdir/big/559-5592431_pokemon-unown-exclamation-mark-unknown-pokemon-question-mark.png",
-        Type: idParams?.dataValues.types,
+        image: idParams?.dataValues.image,
+        Type: idParams?.dataValues.Types,
         description: idParams?.dataValues.description,
       });
       res.send(normalizePokemonIdDb);
@@ -222,8 +240,9 @@ router.get("/:id", async (req, res, next) => {
 
 // CREAR UN POKEMON EN LA BASE DE DATOS
 
-router.post("/", async (req, res) => {
-  const { name, hp, attack, defense, speed, height, weight, types } = req.body;
+router.post("/create", async (req, res) => {
+  const { name, image, hp, attack, defense, speed, height, weight, types } =
+    req.body;
 
   try {
     let pokemonExist = await Pokemon.findOne({
@@ -236,7 +255,7 @@ router.post("/", async (req, res) => {
 
     let newPokemon = await Pokemon.create({
       name: name.toLowerCase(),
-      img: "https://img.search.brave.com/DgXhYLiK-dmzv7iCMP20jz0Q5UFOhY5KVdM6_bT27f8/fit/256/228/ce/1/aHR0cHM6Ly82NC5t/ZWRpYS50dW1ibHIu/Y29tLzcwOGQ0NWYw/ZGZmOGM2MjhmOWI1/OWI3ZWYwYjU2Yjdm/L3R1bWJscl9pbmxp/bmVfb2l5YXR1dTZk/dzF1MGF4eDdfNTQw/LmdpZnY",
+      image: image,
       hp: hp,
       attack: attack,
       defense: defense,
@@ -247,12 +266,14 @@ router.post("/", async (req, res) => {
 
     let pokemonType = await Type.findAll({
       where: {
-        name: types,
+        name: {
+          [Op.in]: Array.isArray(types) ? types : [types],
+        },
       },
     });
 
-    await newPokemon.addType(pokemonType);
-    res.status(200).json({ msg: "Pokemon creado" });
+    await newPokemon.setTypes(pokemonType);
+    res.status(200).json(newPokemon);
   } catch (error) {
     res.status(404).send(error);
   }

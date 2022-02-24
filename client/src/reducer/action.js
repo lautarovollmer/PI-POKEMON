@@ -14,10 +14,10 @@ import {
 import axios from "axios";
 
 export function addPokemon(props) {
-  return (dispatch) => {
-    axios.post("http://localhost:3001/pokemons", props).then((r) => {
-      dispatch({ type: ADD_POKEMON, payload: r.data });
-    });
+  return async (dispatch) => {
+    const r = await axios.post("http://localhost:3001/pokemons/create", props);
+    console.log(r.data);
+    dispatch({ type: ADD_POKEMON, payload: r.data });
   };
 }
 

@@ -4,7 +4,7 @@ import "../PokemonCard/card.css";
 
 export default function Card({ name, img, id, type }) {
   return (
-    <div className="card">
+    <div className="card" onClick={() => console.log(img)}>
       <div>
         <div>
           <img className="imagen" src={img} alt="not found" />
@@ -17,7 +17,11 @@ export default function Card({ name, img, id, type }) {
         <h4 className="typeContainer">Tipo</h4>
         <span>
           {type !== undefined &&
-            type.map((t) => <span className="type">{t.name}</span>)}
+            type.map((t) => (
+              <span className="type" key={t.name}>
+                {t.name}
+              </span>
+            ))}
         </span>
       </div>
     </div>

@@ -1,32 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addPokemon, getTypes } from "../../reducer/action";
-
-export function validate(input) {
-  let errors = {};
-  for (let key in input) {
-    if (key !== "name" && key !== "img") {
-      if (!input[key]) {
-        errors[key] = "is required";
-      } else if (isNaN(input[key])) {
-        errors[key] = "must be a number";
-      }
-    } else {
-      if (!input[key] && key !== "img") {
-        errors[key] = "name is required";
-      } else if (/\d/.test(input[key] && key !== "img")) {
-        errors[key] = "only letters";
-      } else if (input["img"]) {
-        if (
-          !/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/i.test(input["img"])
-        ) {
-          errors[key] = "only links .jpg .jpeg .png or .gif";
-        }
-      }
-    }
-  }
-  return errors;
-}
+import { validate } from "./validate.js";
 
 export default function Form() {
   const [error, setError] = useState({});
@@ -38,7 +13,7 @@ export default function Form() {
     speed: "",
     height: "",
     weight: "",
-    img: "",
+    image: "",
   });
 
   const [types, setTypes] = useState([]);
@@ -73,10 +48,9 @@ export default function Form() {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    let error = validate(inputs);
     if (!Object.keys(error).length && types.length) {
       alert("Pokemon created!");
-      dispatch(addPokemon({ ...inputs, types: types.map((n) => n) }));
+      dispatch(addPokemon({ ...inputs, types: types }));
       setInputs({
         name: "",
         hp: "",
@@ -85,7 +59,7 @@ export default function Form() {
         speed: "",
         height: "",
         weight: "",
-        img: "",
+        image: "",
       });
       setTypes([]);
       e.target.reset();
@@ -183,9 +157,9 @@ export default function Form() {
         <div>
           <label>Image Link: </label>
           <input
-            name="img"
+            name="image"
             type="text"
-            value={inputs.img}
+            value={inputs.image}
             placeholder="img link..."
             onChange={handleInputChange}
           />
@@ -203,7 +177,7 @@ export default function Form() {
                   name={`tipos`}
                   value={`${t.name}`}
                   id={`${t.id}`}
-                  onChange={handleChecked}
+                  onChange={(e) => handleChecked(e)}
                 />
                 <label htmlFor={`${t.name}`}>{`${t.name}`}</label>
               </div>

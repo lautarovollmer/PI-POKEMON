@@ -63,7 +63,9 @@ export default function Character() {
                 <div>
                   {pokemon.Type.length
                     ? pokemon.Type.map((t) => (
-                        <span className="types">{t.name}</span>
+                        <span className="types" key={t.name}>
+                          {t.name}
+                        </span>
                       ))
                     : "Este pokemon no tiene tipo"}
                 </div>
