@@ -88,7 +88,6 @@ router.get("/", async (req, res, next) => {
           },
         },
       });
-      console.log(include);
 
       // NORMALIZAR TODOS LOS POKEMONS PARA QUE SOLO TRAIGA LOS DATA QUE QUIERO DE CADA POKEMON DE BASE DE DATOS
       let normalize = [];
@@ -222,6 +221,7 @@ router.get("/:id", async (req, res, next) => {
       normalizePokemonIdDb.push({
         id: idParams?.dataValues.id,
         name: idParams?.dataValues.name.toUpperCase(),
+        hp: idParams?.dataValues.hp,
         attack: idParams?.dataValues.attack,
         defense: idParams?.dataValues.defense,
         speed: idParams?.dataValues.speed,

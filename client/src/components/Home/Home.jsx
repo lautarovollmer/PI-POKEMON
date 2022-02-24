@@ -31,7 +31,6 @@ export default function Home() {
     dispatch(getPokemon());
     dispatch(getTypes());
   }, [dispatch]);
-  console.log(currentPokmn);
 
   const handleRefresh = () => {
     dispatch(getPokemon());

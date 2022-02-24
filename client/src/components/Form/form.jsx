@@ -192,7 +192,7 @@ export default function Form() {
                 </div>
               ))}
           </div>
-          <input className="btn-f" type="submit" value="Crear" />
+          <input className="btn-f" type="submit" value="Create" />
         </form>
       </div>
     </>

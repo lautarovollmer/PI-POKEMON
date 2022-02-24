@@ -1,16 +1,26 @@
 .style {
-  border: 1px solid #434141;
-  background-color: #4a6163e0;
-  border-radius: 4px;
-  width: 60%;
-  margin: 0px auto;
-  padding: 5px 15px;
-  height: 350px;
+  background-color: white;
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 60px;
+  font-family: "Nunito", sans-serif;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-radius: 30px;
+  box-shadow: 1px 1px 10px #17d7a0;
+  margin-bottom: 30px;
+}
+
+.cardConteiner {
   display: flex;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.homeC {
+  display: flex;
+  align-items: flex-start;
 }
 
 .style-img {
@@ -24,12 +34,14 @@
   display: flex;
   flex-direction: column;
   width: inherit;
+  color: black;
 }
 
 .stats h3 {
   text-transform: capitalize;
   border-bottom: 2px solid #eee;
   margin-right: 10px;
+  color: #17d7a0;
 }
 
 .span {
@@ -45,12 +57,17 @@
 }
 
 .link-s {
-  text-decoration: none;
+  margin-top: 20px;
+  width: max-content;
+  font-size: 18px;
   font-weight: lighter;
-  padding: 1px 35px 8px 35px;
+  padding: 8px 35px 8px 35px;
   background-image: linear-gradient(to right, #9beebb, #17d7a0);
   border-radius: 30px;
+  border: none;
+  text-decoration: none;
   color: black;
+  margin-left: 30px;
 }
 
 .link-s:hover {
@@ -59,10 +76,22 @@
 }
 
 .types {
-  flex-wrap: wrap;
+  margin: 0px;
+  padding: 4px 20px 4px 20px;
   text-transform: capitalize;
-  border: black;
-  border-radius: 2px;
-  margin: 10px;
-  word-spacing: 0.25rem;
+  font-weight: bolder;
+  color: black;
+  font-size: 15px;
+}
+
+.style-img {
+  max-width: 400px;
+}
+
+.imgT {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
 }

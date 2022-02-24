@@ -15,18 +15,19 @@ export default function Character() {
   useEffect(() => {
     dispatch(getPokemonById(id));
   }, []);
-  console.log(pokemon);
+
   return (
     <div>
       <div className="style">
         {pokemon.hasOwnProperty("name") ? (
           <>
-            <div>
+            <div className="cardConteiner" />
+            <div className="homeC">
               <Link className="link-s" to="/home">
-                Home
+                <span>Home</span>
               </Link>
             </div>
-            <div>
+            <div className="imgT">
               <img
                 className="style-img"
                 src={
@@ -44,29 +45,29 @@ export default function Character() {
               <span className="span">Id:</span>
               <span>{pokemon.id}</span>
 
-              <span className="span">Vida:</span>
+              <span className="span">Life:</span>
               <span>{pokemon.hp}</span>
 
-              <span className="span">Fuerza:</span>
+              <span className="span">Attack:</span>
               <span>{pokemon.attack}</span>
 
-              <span className="span">Defensa:</span>
+              <span className="span">Defense:</span>
               <span>{pokemon.defense}</span>
 
-              <span className="span">Velocidad:</span>
+              <span className="span">Speed:</span>
               <span>{pokemon.speed}</span>
             </div>
             <div className="stats">
-              <h3>Dimensiones</h3>
+              <h3>Size</h3>
 
-              <span className="span-dim">Altura:</span>
+              <span className="span-dim">Height:</span>
               <span>{pokemon.height}</span>
 
-              <span className="span-dim">Peso:</span>
+              <span className="span-dim">Weight:</span>
               <span>{pokemon.weight}</span>
 
               <div>
-                <h3>Tipos</h3>
+                <h3>Types</h3>
                 <div>
                   {pokemon.Type.length
                     ? pokemon.Type.map((t) => (

@@ -1,9 +1,15 @@
 .form {
-  border: 1px solid #434141;
-  border-radius: 10px;
-  width: 60%;
-  margin: auto;
-  background-color: #4a6163e0;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  padding: 50px;
+  font-family: "Nunito", sans-serif;
+  box-shadow: 1px 1px 10px #aad8d3;
+  border-radius: 30px;
 }
 
 .form h3 {
@@ -12,9 +18,12 @@
 }
 
 .stats {
-  padding: 10px;
-  border-bottom: 1px solid #f9faf4;
-  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  color: #17d7a0;
+  font-weight: bolder;
+  font-size: 18px;
 }
 
 .stats > label {
