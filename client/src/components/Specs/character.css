@@ -41,19 +41,21 @@
   text-transform: capitalize;
   border-bottom: 2px solid #eee;
   margin-right: 10px;
-  color: #17d7a0;
+  color: black;
 }
 
 .span {
   font-family: "Flexo-Bold", arial, sans-serif;
   font-size: 80%;
   padding-top: 3px;
+  color: black;
 }
 
 .span-dim {
   font-family: "Flexo-Bold", arial, sans-serif;
   font-size: 80%;
   padding-top: 3px;
+  color: black;
 }
 
 .link-s {
@@ -80,7 +82,7 @@
   padding: 4px 20px 4px 20px;
   text-transform: capitalize;
   font-weight: bolder;
-  color: black;
+  color: #17d7a0;
   font-size: 15px;
 }
 

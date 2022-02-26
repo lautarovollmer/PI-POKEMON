@@ -15,6 +15,7 @@
   background-image: linear-gradient(to right, #9beebb, #17d7a0);
   border-radius: 30px;
   border: none;
+  cursor: pointer;
 }
 
 .restart:hover {

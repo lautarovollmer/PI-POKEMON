@@ -51,7 +51,7 @@ export default function Home() {
       />
       <div>
         <button className="restart" onClick={() => handleRefresh()}>
-          Restart
+          HOME
         </button>
       </div>
 
