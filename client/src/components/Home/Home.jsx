@@ -40,7 +40,6 @@ export default function Home() {
   return (
     <div className="home">
       <h1>POKÉDEX</h1>
-
       <Nav />
       <Search />
       <Filter />
@@ -54,10 +53,12 @@ export default function Home() {
           HOME
         </button>
       </div>
-
-      {pokemonsShowed.length ? (
+      {pokemonsShowed === "pokemon not found" && <div>Pokemon not found</div>}
+      {pokemonsShowed.length > 0 && Array.isArray(pokemonsShowed) && (
         <Cards className="card" allPokemons={currentPokmn} />
-      ) : (
+      )}
+
+      {pokemonsShowed.length === 0 && (
         <div>
           <img
             src="https://www.animatedimages.org/data/media/1446/animated-pokemon-image-0005.gif"

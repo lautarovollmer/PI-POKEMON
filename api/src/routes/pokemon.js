@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
   if (name) {
     name = name.toLowerCase();
 
-    //OBTENER POKEMON DE API POR QUERY
+    //OBTENER POKEMON POR QUERY
     try {
       let normalizeApi = [];
       const nameApi = await axios.get(
@@ -34,47 +34,46 @@ router.get("/", async (req, res, next) => {
             return { name: t.type.name };
           }),
         });
+        res.send(normalizeApi.length > 0 ? normalizeApi : []);
+      } else {
+        let nameQuery = await Pokemon.findAll({
+          include: {
+            model: Type,
+            attributes: ["name"],
+            through: {
+              attributes: [],
+            },
+          },
+          where: {
+            name: {
+              [Op.iLike]: "%" + name + "%",
+            },
+          },
+          order: [["name", "ASC"]],
+        });
+
+        // NORMALIZAR TODOS LOS POKEMONS PARA QUE SOLO TRAIGA LOS DATA QUE QUIERO DE CADA POKEMON
+        let normalizePokemonDb = [];
+        normalizePokemonDb.push({
+          id: nameQuery[0]?.dataValues.id,
+          name: nameQuery[0]?.dataValues.name.toUpperCase(),
+          attack: nameQuery[0]?.dataValues.attack,
+          defense: nameQuery[0]?.dataValues.defense,
+          speed: nameQuery[0]?.dataValues.speed,
+          height: nameQuery[0]?.dataValues.height,
+          weight: nameQuery[0]?.dataValues.weight,
+          image: nameQuery[0]?.dataValues.image,
+          Type: nameQuery[0]?.dataValues.types.map((n) => {
+            return { name: n.name };
+          }),
+          description: nameQuery[0]?.dataValues.description,
+          createInDb: nameQuery[0]?.dataValues.createInDb,
+        });
+        res.send(normalizePokemonDb.length > 0 ? normalizePokemonDb : []);
       }
-      res.send(normalizeApi);
-    } catch {}
-
-    // OBTENER POKEMON DE BASE DE DATOS POR QUERY {name}
-    try {
-      let nameQuery = await Pokemon.findAll({
-        include: {
-          model: Type,
-          attributes: ["name"],
-          through: {
-            attributes: [],
-          },
-        },
-        where: {
-          name: {
-            [Op.iLike]: "%" + name + "%",
-          },
-        },
-        order: [["name", "ASC"]],
-      });
-
-      // NORMALIZAR TODOS LOS POKEMONS PARA QUE SOLO TRAIGA LOS DATA QUE QUIERO DE CADA POKEMON
-      let normalizePokemonDb = [];
-      normalizePokemonDb.push({
-        id: nameQuery[0]?.dataValues.id,
-        name: nameQuery[0]?.dataValues.name.toUpperCase(),
-        attack: nameQuery[0]?.dataValues.attack,
-        defense: nameQuery[0]?.dataValues.defense,
-        speed: nameQuery[0]?.dataValues.speed,
-        height: nameQuery[0]?.dataValues.height,
-        weight: nameQuery[0]?.dataValues.weight,
-        image: nameQuery[0]?.dataValues.image,
-        Type: nameQuery[0]?.dataValues.types.map((n) => {
-          return { name: n.name };
-        }),
-        description: nameQuery[0]?.dataValues.description,
-        createInDb: nameQuery[0]?.dataValues.createInDb,
-      });
-      res.send(normalizePokemonDb);
-    } catch {}
+    } catch {
+      res.send("pokemon not found");
+    }
 
     // OBTENER POKEMONS DE BASE DE DATOS
   } else {
@@ -137,14 +136,6 @@ router.get("/", async (req, res, next) => {
       let subrequest = apiLink.map((el) => axios.get(el.url));
       let promesaCumplida = await Promise.all(subrequest);
 
-      // let infoApi = await axios.get("https://pokeapi.co/api/v2/pokemon");
-      // let infoApiPokemons = infoApi.data.results;
-      // let infoApiNext = await axios.get(infoApi.data.next);
-      // let infoApiPokemonsNext = infoApiNext.data.results;
-      // let concatenar = infoApiPokemons.concat(infoApiPokemonsNext);
-      // let subrequest = concatenar.map((el) => axios.get(el.url));
-      // let promesaCumplida = await Promise.all(subrequest);
-
       promesaCumplida = await promesaCumplida.map((poke) => {
         return {
           id: poke.data.id,
@@ -172,7 +163,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// OBTENER TODOS LOS POKEMNS POR PARAMS {ID}
+// OBTENER TODOS LOS POKEMONS POR PARAMS {ID}
 
 // OBTENER POKEMON DE API POR PARAMS {ID}
 router.get("/:id", async (req, res, next) => {
