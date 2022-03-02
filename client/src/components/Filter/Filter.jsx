@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sortPokemons, filterCreated, filterTypes } from "../../reducer/action";
 import "../Filter/filter.css";
 
-export default function Filter() {
+export default function Filter({ setCurrentPage }) {
   const [order, setOrder] = useState("");
   const [filterTipos, setFilterTipos] = useState("all");
   const [filter, setFilter] = useState("all");
@@ -15,6 +15,7 @@ export default function Filter() {
   const handleChangeFilter = (e) => {
     //by origin
     setFilter(e.target.value);
+    setCurrentPage(1);
   };
 
   const handleChangeTypes = (e) => {
@@ -41,8 +42,8 @@ export default function Filter() {
         </label>
         <select className="select" name="order" onChange={handleChangeOrder}>
           <option value="none">None</option>
-          <option value="high-low">More strong</option>
-          <option value="low-high">More weak</option>
+          <option value="high-low">Stronger</option>
+          <option value="low-high">Weaker</option>
           <option value="A-Z">A-Z</option>
           <option value="Z-A">Z-A</option>
         </select>

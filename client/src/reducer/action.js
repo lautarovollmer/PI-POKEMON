@@ -7,8 +7,7 @@ import {
   ADD_POKEMON,
   GET_NAME_POKEMONS,
   GET_TYPES,
-  CLEAR_POKEMON_SEARCH,
-  CLEAR_POKEMON_SPECS,
+  CLEAN_DETAILS_POKEMONS,
 } from "../reducer/types";
 
 import axios from "axios";
@@ -74,10 +73,9 @@ export function sortPokemons(type) {
   };
 }
 
-export function clearPokemonSpecs() {
-  return { type: CLEAR_POKEMON_SPECS };
-}
-
-export function clearPokemonSearch() {
-  return { type: CLEAR_POKEMON_SEARCH };
+export function cleanDetailsPokemon() {
+  console.log("MSG");
+  return {
+    type: CLEAN_DETAILS_POKEMONS,
+  };
 }

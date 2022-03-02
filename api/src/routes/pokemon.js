@@ -38,7 +38,7 @@ router.get("/", async (req, res, next) => {
       } else {
         let nameQuery = await Pokemon.findAll({
           include: {
-            model: Type,
+            Type: true,
             attributes: ["name"],
             through: {
               attributes: [],

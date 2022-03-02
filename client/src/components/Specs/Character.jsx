@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getPokemonById } from "../../reducer/action";
+import { getPokemonById, cleanDetailsPokemon } from "../../reducer/action";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -15,6 +15,10 @@ export default function Character() {
   useEffect(() => {
     dispatch(getPokemonById(id));
   }, []);
+
+  useEffect(() => {
+    return () => dispatch(cleanDetailsPokemon());
+  }, [dispatch]);
 
   return (
     <div>

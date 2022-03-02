@@ -4,7 +4,7 @@ import "../PokemonCard/card.css";
 
 export default function Card({ name, img, id, type }) {
   return (
-    <div className="card" onClick={() => console.log(img)}>
+    <div className="card">
       <div>
         <div>
           <img

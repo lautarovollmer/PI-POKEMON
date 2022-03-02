@@ -7,8 +7,7 @@ import {
   ADD_POKEMON,
   GET_NAME_POKEMONS,
   GET_TYPES,
-  CLEAR_POKEMON_SEARCH,
-  CLEAR_POKEMON_SPECS,
+  CLEAN_DETAILS_POKEMONS,
 } from "../reducer/types";
 
 //[{name:,id:,hp:,...,types:["fire", "water"]}, {...},{...}]
@@ -59,6 +58,12 @@ export default function rootReducer(state = initialData, action) {
 
     case GET_POKEMON_ID:
       return { ...state, pokemon: action.payload };
+
+    case CLEAN_DETAILS_POKEMONS:
+      return {
+        ...state,
+        pokemon: [],
+      };
 
     case FILTER_CREATED:
       if (action.payload === "created") {
@@ -131,12 +136,6 @@ export default function rootReducer(state = initialData, action) {
       } else {
         return { ...state, pokemonsShowed: state.pokemonsShowed };
       }
-
-    case CLEAR_POKEMON_SPECS:
-      return { ...state, pokemon: {} };
-
-    case CLEAR_POKEMON_SEARCH:
-      return { ...state, pokemonSearch: {} };
 
     default:
       return state;

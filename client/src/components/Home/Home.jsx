@@ -24,13 +24,16 @@ export default function Home() {
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo(0, 0);
   };
 
   useEffect(() => {
     dispatch(getPokemon());
     dispatch(getTypes());
   }, [dispatch]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [pokemonsShowed]);
 
   const handleRefresh = () => {
     dispatch(getPokemon());
