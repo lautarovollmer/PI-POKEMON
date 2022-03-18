@@ -7,7 +7,7 @@ export default function Nav() {
     <>
       <div className="nav">
         <Link className="crear" to="/create">
-          <h3>Create Pokemon</h3>
+          <h3>Create Pokemon...</h3>
         </Link>
       </div>
     </>
