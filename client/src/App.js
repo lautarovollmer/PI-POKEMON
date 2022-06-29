@@ -4,6 +4,12 @@ import Landing from "./components/Landing/Landing";
 import Home from "./components/Home/Home";
 import Character from "./components/Specs/Character";
 import Form from "./components/Form/form";
+import axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
 
 function App() {
   return (
