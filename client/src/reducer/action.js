@@ -14,7 +14,10 @@ import axios from "axios";
 
 export function addPokemon(props) {
   return async (dispatch) => {
-    const r = await axios.post("/pokemons/create", props);
+    const r = await axios.post(
+      "https://lautarovollmer-pokemons.herokuapp.com/pokemons/create",
+      props
+    );
     console.log(r.data);
     dispatch({ type: ADD_POKEMON, payload: r.data });
   };
@@ -22,13 +25,17 @@ export function addPokemon(props) {
 
 export function getTypes() {
   return async (dispatch) => {
-    const r = await axios.get("/types");
+    const r = await axios.get(
+      "https://lautarovollmer-pokemons.herokuapp.com/types"
+    );
     dispatch({ type: GET_TYPES, payload: r.data });
   };
 }
 export function getPokemon() {
   return async (dispatch) => {
-    const r = await axios.get("/pokemons");
+    const r = await axios.get(
+      "https://lautarovollmer-pokemons.herokuapp.com/pokemons"
+    );
     dispatch({
       type: GET_POKEMONS,
       payload: r.data,
@@ -37,14 +44,18 @@ export function getPokemon() {
 }
 export function getPokemonById(id) {
   return async (dispatch) => {
-    const r = await axios.get(`/pokemons/${id}`);
+    const r = await axios.get(
+      `https://lautarovollmer-pokemons.herokuapp.com/pokemons/${id}`
+    );
     dispatch({ type: GET_POKEMON_ID, payload: r.data });
   };
 }
 
 export function getNamePokemons(name) {
   return async function (dispatch) {
-    let json = await axios.get(`/pokemons?name=${name}`);
+    let json = await axios.get(
+      `https://lautarovollmer-pokemons.herokuapp.com/pokemons?name=${name}`
+    );
     console.log(json.data);
     return dispatch({
       type: GET_NAME_POKEMONS,
